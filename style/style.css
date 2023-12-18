@@ -1,0 +1,81 @@
+@font-face {
+    font-family: "Iwata Souchou Pro Medium";
+    src: url("../fonts/OPN.ttf") format("truetype");
+    font-weight: bold;
+    font-style: normal;
+  }
+
+  /* Teal Color */
+
+.text-iwata{
+    font-family: "Iwata Souchou Pro Medium", sans-serif;
+}
+
+:root{
+	--maroon: #8c0001;
+}	
+
+.bg-maroon{
+    background-color: var(--maroon);
+}
+
+
+.text-maroon{
+    color: var(--maroon);
+}
+
+.btn-maroon{
+    background-color: var(--maroon);
+    color: white;
+}
+
+.btn-maroon:hover{
+    background-color: var(--maroon);
+    color:white;
+}
+
+.btn-maroon:active{
+    background-color: var(--maroon);
+}
+
+.hide-picture{
+        overflow: hidden;  
+        max-width: 100vw; /* Ensure container doesn't exceed viewport width */
+  
+}
+
+.hide-picture img{
+    max-height: 450px;
+}
+
+
+.bg-index{
+    background-color: #e3ecff;
+    background-image: linear-gradient(135deg, #e3ecff 0%, #9091d6 100%);  
+
+}
+
+.reg-form {
+    width: 100%;
+    max-width: 600px;
+    background: white;
+    padding: 28px;
+    margin: 0 28px;
+    border-radius: 10px;
+}
+
+.fa {
+    font-size: 24px;
+    color: white;
+    margin-right: 1rem;
+  }
+
+/* Positioning */
+
+.top-15{
+    top: 15%!important;
+}
+
+.start-46{
+    left: 46.5%!important;
+}
