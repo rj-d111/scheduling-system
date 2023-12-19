@@ -38,27 +38,41 @@ function adjustTitleFontSize() {
            adminLogIn.classList.add("d-none");
     }
 
-    //Adjust navbar top and avoid overlap
-    const navbarHeight = document.querySelector('#navbar-all').offsetHeight;
-
-    const adjustTop = document.querySelector("#fix-top");
-    adjustTop.style.height = navbarHeight + "px";
-
-    const imgWhite = document.querySelector("#logo-white");
-    if(screenWidth > 768){
-      imgWhite.classList.add("d-none");
-    }else{
-      imgWhite.classList.remove("d-none");      
-    }
-
-
 
 
   }
    
+  function adjustNavbar(){
+    const navbar = document.querySelector("nav.navbar");
+    const navbarHeight = navbar.offsetHeight;
+    console.log(navbarHeight);
+
+    screenWidth = window.innerWidth;
+    if(screenWidth<768){
+      navbar.classList.add("fixed-top");
+    }else{
+      navbar.classList.remove("fixed-top");      
+    }
+
+       //Adjust navbar top and avoid overlap
+
+       const adjustTop = document.querySelector("#fix-top");
+       adjustTop.style.height = navbarHeight + "px";
+   
+       if(screenWidth < 768){
+         imgWhite.classList.add("d-none");
+       }else{
+         imgWhite.classList.remove("d-none");      
+       }
+   
+  }
+
+
+
   // Call the function initially on page load
   adjustTitleFontSize();
-  
+  adjustNavbar();  
   // Call the function again on window resize to dynamically adapt
   window.addEventListener("resize", adjustTitleFontSize);
+  window.addEventListener("resize", adjustNavbar);
 
