@@ -1,6 +1,44 @@
 <?php include "navbar.php" ?>
 
-<div class="container-md">
+<!-- Nav tabs -->
+<div class="container-md mt-5">
+  <ul class="nav nav-tabs">
+    <li class="nav-item">
+      <a class="nav-link" href="#">Message</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Section Offering</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="registration.php">Registration</a>
+
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Profile</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link active" aria-current="page" href="schedule.php">Schedule</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Grades</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Account</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Calendar</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Password</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Faculty Evaluation</a>
+    </li>
+  </ul>
+
+</div>
+
+<div class="container-md mt-5">
   <!-- Academic Year and Semester Dropdowns -->
   <div class="mb-3 col-md-2">
     <label for="academicYear" class="form-label">Academic Year</label>
@@ -60,10 +98,10 @@
     </tbody>
   </table>
 
-      <!-- Start of Schedule Content -->
+  <!-- Start of Schedule Content -->
 
-    
-      <table class="table table-bordered mt-5">
+
+  <table class="table table-bordered mt-5">
     <!-- Table Head -->
     <thead class="table-dark text-center">
       <tr>
@@ -76,7 +114,7 @@
         <th scope="col">Saturday</th>
       </tr>
     </thead>
-    
+
     <!-- Table Body -->
     <tbody>
       <?php
@@ -93,7 +131,7 @@
                 <td></td>
                 <td></td>
               </tr>";
-        
+
         // Add row for 30 minutes past the hour
         if ($hour <= 21) {
           echo "<tr>
@@ -111,7 +149,7 @@
     </tbody>
   </table>
 
-      <!-- End of Schedule Content -->
+  <!-- End of Schedule Content -->
 </div>
 
 <!-- <script src="../script/drag-schedule.js"></script> -->

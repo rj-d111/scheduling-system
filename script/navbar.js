@@ -45,7 +45,6 @@ function adjustTitleFontSize() {
   function adjustNavbar(){
     const navbar = document.querySelector("nav.navbar");
     const navbarHeight = navbar.offsetHeight;
-    console.log(navbarHeight);
 
     screenWidth = window.innerWidth;
     if(screenWidth<768){
@@ -57,13 +56,21 @@ function adjustTitleFontSize() {
        //Adjust navbar top and avoid overlap
 
        const adjustTop = document.querySelector("#fix-top");
-       adjustTop.style.height = navbarHeight + "px";
-   
-       if(screenWidth < 768){
-         imgWhite.classList.add("d-none");
-       }else{
-         imgWhite.classList.remove("d-none");      
-       }
+
+       if(screenWidth>768){
+        adjustTop.classList.add("d-none");
+        
+      }else{
+        adjustTop.classList.remove("d-none");  
+        adjustTop.style.height = navbarHeight+"px";    
+      }  
+
+
+      //  if(screenWidth < 768){
+      //    imgWhite.classList.add("d-none");
+      //  }else{
+      //    imgWhite.classList.remove("d-none");      
+      //  }
    
   }
 

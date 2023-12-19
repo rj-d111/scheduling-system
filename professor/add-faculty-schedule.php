@@ -2,7 +2,7 @@
 
 <main class="container-md">
     <a href="home.php" class="text-decoration-none link-dark">
-        <div class="fs-6 mt-5 mb-3"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</div>
+        <div class="fs-6 mt-5 mb-3"><i class="fa-solid fa-chevron-left"></i> Back</div>
     </a>
     <div class="fs-2 mb-3 fw-bold">New Schedule</div>
 </main>
@@ -21,23 +21,25 @@
             </div>
 
             <!-- Semester -->
-            <div class="col-md-6">
+            <!-- <div class="col-md-6">
                 <div class="mb-3">
                     <label for="semester" class="form-label">Semester</label>
                     <select class="form-select" id="semester" name="semester" required>
+                        <option value="" disabled="" selected="">Select Semester</option>
                         <option value="first">First</option>
                         <option value="second">Second</option>
                         <option value="summer">Summer</option>
                     </select>
                 </div>
-            </div>
+            </div> -->
             <!-- Subject Type -->
             <div class="col-md-6">
                 <div class="mb-3">
                     <label for="subjectType" class="form-label">Subject Type</label>
                     <select class="form-select" id="subjectType" name="subjectType" required>
+                        <option value="" disabled="" selected="">Select Subject Type</option>
                         <option value="lecture">Lecture</option>
-                        <option value="lecLab">Lec + Lab</option>
+                        <!-- <option value="lecLab" >Lec + Lab</option> -->
                     </select>
                 </div>
             </div>
@@ -55,6 +57,7 @@
                 <div class="mb-3">
                     <label for="buildingName" class="form-label">Building Name</label>
                     <select class="form-select" id="buildingName" name="buildingName" required>
+                        <option value="" disabled="" selected="">Select Building Name</option>
                         <option value="J">J Building</option>
                         <option value="S">S Building</option>
                         <option value="L">L Building</option>
@@ -84,7 +87,7 @@
             </div>
 
             <!-- Additional Room Number -->
-            <div class="col-md-6">
+            <div class="col-md-6 d-none">
                 <div class="mb-3">
                     <label for="additionalRoomNumber" class="form-label">Additional Room Number</label>
                     <select class="form-select" id="additionalRoomNumber" name="additionalRoomNumber">
@@ -99,35 +102,40 @@
                     <label for="daysOfWeek" class="form-label">Days of the Week</label>
                     <select class="form-select" id="daysOfWeek" name="daysOfWeek" required>
                         <!-- Options will be dynamically populated based on the selected subject type -->
+                        <option value='MW'>M/W</option>
+                        <option value='TTH'>T/TH</option>
+                        <option value='FS'>F/S</option>
                     </select>
                 </div>
             </div>
 
             <!-- Start Time -->
-            <div class="col-md-6">
-                <div class="mb-3">
-                    <label for="startTime" class="form-label">Start Time</label>
-                    <select class="form-select" id="startTime" name="startTime" required>
-                        <option value="7:00">7:00 AM</option>
-                        <option value="8:30">8:30 AM</option>
-                        <option value="10:00">10:00 AM</option>
-                        <option value="11:30">11:30 AM</option>
-                        <option value="13:00">1:00 PM</option>
-                        <option value="14:30">2:30 PM</option>
-                        <option value="16:00">4:00 PM</option>
-                        <option value="17:30">5:30 PM</option>
-                    </select>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="startTime" class="form-label">Start Time</label>
+                        <select class="form-select" id="startTime" name="startTime" required>
+                            <option value="7:00">7:00 AM</option>
+                            <option value="8:30">8:30 AM</option>
+                            <option value="10:00">10:00 AM</option>
+                            <option value="11:30">11:30 AM</option>
+                            <option value="13:00">1:00 PM</option>
+                            <option value="14:30">2:30 PM</option>
+                            <option value="16:00">4:00 PM</option>
+                            <option value="17:30">5:30 PM</option>
+                        </select>
+                    </div>
                 </div>
-            </div>
 
-            <!-- End Time -->
+                <!-- End Time -->
 
-            <div class="col-md-6">
-                <div class="mb-3">
-                    <label for="endTime" class="form-label">End Time</label>
-                    <select class="form-select" id="endTime" name="endTime" required>
-                        <!-- Options will be dynamically populated based on the selected subject type and start time -->
-                    </select>
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="endTime" class="form-label">End Time</label>
+                        <select class="form-select" id="endTime" name="endTime" required>
+                            <!-- Options will be dynamically populated based on the selected subject type and start time -->
+                        </select>
+                    </div>
                 </div>
             </div>
             <button type="submit" class="btn btn-maroon">Submit</button>

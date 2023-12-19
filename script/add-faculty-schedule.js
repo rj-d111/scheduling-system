@@ -16,6 +16,7 @@
         }
         break;
       case "S":
+
         for(let i=201; i<=216; i++){
             roomNumberOptions += `<option value="${buildingName + i}">${buildingName + i}</option>`;
         }
@@ -78,25 +79,22 @@
   });
 
   // Dynamically populate Days of the Week options based on the selected subject type
-  $("#subjectType, #daysOfWeek").change(function () {
-    var subjectType = $("#subjectType").val();
-    var daysOfWeekOptions = "";
+  // $("#subjectType, #daysOfWeek").change(function () {
+  //   var subjectType = $("#subjectType").val();
+  //   var daysOfWeekOptions = "";
 
-    if (subjectType === "lecture") {
-      daysOfWeekOptions += "<option value='M/W'>M/W</option>";
-      daysOfWeekOptions += "<option value='T/TH'>T/TH</option>";
-      daysOfWeekOptions += "<option value='F/S'>F/S</option>";
-    } else if (subjectType === "lecLab") {
-      daysOfWeekOptions += "<option value='M'>M</option>";
-      daysOfWeekOptions += "<option value='T'>T</option>";
-      daysOfWeekOptions += "<option value='W'>W</option>";
-      daysOfWeekOptions += "<option value='TH'>TH</option>";
-      daysOfWeekOptions += "<option value='F'>F</option>";
-      daysOfWeekOptions += "<option value='S'>S</option>";
-    }
+  
 
-    $("#daysOfWeek").html(daysOfWeekOptions);
-  });
+   
+  //     // daysOfWeekOptions += "<option value='M'>M</option>";
+  //     // daysOfWeekOptions += "<option value='T'>T</option>";
+  //     // daysOfWeekOptions += "<option value='W'>W</option>";
+  //     // daysOfWeekOptions += "<option value='TH'>TH</option>";
+  //     // daysOfWeekOptions += "<option value='F'>F</option>";
+  //     // daysOfWeekOptions += "<option value='S'>S</option>";
+
+  //   $("#daysOfWeek").html(daysOfWeekOptions);
+  // });
 
   // Dynamically populate End Time options based on the selected subject type and start time
   $("#subjectType, #startTime").change(function () {
@@ -104,29 +102,55 @@
     var startTime = $("#startTime").val();
     var endTimeOptions = "";
 
-    if (subjectType === "lecture") {
-      if (startTime === "7:00" || startTime === "8:30") {
-        endTimeOptions += "<option value='8:30'>8:30 AM</option>";
-        endTimeOptions += "<option value='10:00'>10:00 AM</option>";
-      } else if (startTime === "10:00" || startTime === "11:30") {
-        endTimeOptions += "<option value='11:30'>11:30 AM</option>";
-        endTimeOptions += "<option value='13:00'>1:00 PM</option>";
-      } else if (startTime === "13:00" || startTime === "14:30") {
-        endTimeOptions += "<option value='14:30'>2:30 PM</option>";
-        endTimeOptions += "<option value='16:00'>4:00 PM</option>";
-        endTimeOptions += "<option value='17:30'>5:30 PM</option>";
+  
+      function addTimeHourHalf(){
+        var timeArray = startTime.split(":");
+        var hours = parseInt(timeArray[0]);
+        var minutes = parseInt(timeArray[1]);
+        // Add 1.5 hours to the time
+        var newHours = hours + 1; // Add 1 hour
+        var newMinutes = minutes + 30; // Add 30 minutes
+        
+        // Check if adding 30 minutes results in an hour overflow
+        if (newMinutes >= 60) {
+          newHours++;         // Increment the hour
+          newMinutes -= 60;   // Subtract 60 minutes
+        }
+        
+        // Format the result to ensure leading zeros
+        var formattedHours = String(newHours);
+        var formattedMinutes = String(newMinutes).padStart(2, "0");
+        
+        // Combine hours and minutes back into HH:mm format
+        var resultTime = formattedHours + ":" + formattedMinutes;
+        return resultTime;
       }
-    } else if (subjectType === "lecLab") {
-      if (startTime === "7:00" || startTime === "8:30" || startTime === "10:00") {
-        endTimeOptions += "<option value='8:30'>8:30 AM</option>";
-        endTimeOptions += "<option value='11:30'>11:30 AM</option>";
-        endTimeOptions += "<option value='14:30'>2:30 PM</option>";
-      } else if (startTime === "11:30" || startTime === "13:00" || startTime === "14:30") {
-        endTimeOptions += "<option value='13:00'>1:00 PM</option>";
-        endTimeOptions += "<option value='16:00'>4:00 PM</option>";
-        endTimeOptions += "<option value='17:30'>5:30 PM</option>";
+
+      function convertToTwelveHr(){
+        var timeArray = addTimeHourHalf().split(":");
+        var hours = parseInt(timeArray[0]);
+        var minutes = parseInt(timeArray[1]);
+        var AMPM = "";
+
+        if(hours-12 <0){
+          AMPM = "AM";
+        }else{
+          AMPM = "PM";
+          hours -= 12;
+        }
+
+        var formattedHours = String(hours);
+        var formattedMinutes = String(minutes).padStart(2, "0")
+
+        var combinedTime = formattedHours + ":"+ formattedMinutes + " " +AMPM;
+        return combinedTime;
       }
-    }
+
+      console.log();
+
+      endTimeOptions += `<option value='${addTimeHourHalf()}'>${convertToTwelveHr()}</option>`;
+    
+  
 
     $("#endTime").html(endTimeOptions);
   });
