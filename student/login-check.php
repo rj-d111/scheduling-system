@@ -2,7 +2,7 @@
 session_start();
 include "../php-connect/db_conn.php";
 
-header("Location: schedule.php");
+header("Location: registration.php");
 
 
 // $months = [

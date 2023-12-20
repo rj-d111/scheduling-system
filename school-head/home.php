@@ -17,7 +17,7 @@ if (isset($_SESSION['email'])) {
           <!-- Start of tab 1 -->
           <?php
           //SQL query to join tbl_application and tbl_customer
-          $sql = "SELECT * FROM tbl_course";
+          $sql = "SELECT * FROM tbl_course GROUP BY department, course_id";
           // Execute the query
           $result = mysqli_query($conn, $sql);
           ?>
@@ -31,6 +31,7 @@ if (isset($_SESSION['email'])) {
                 <th scope="col">#</th>
                 <th scope="col">Course Code</th>
                 <th scope="col">Description</th>
+                <th scope="col">Department</th>
                 <th scope="col">Lec</th>
                 <th scope="col">Lab</th>
                 <th scope="col">Units</th>
@@ -47,6 +48,7 @@ if (isset($_SESSION['email'])) {
                   echo '<th scope="row">' . $i . '</td>';
                   echo "<td>{$row['course_id']}</td>";
                   echo "<td>{$row['subject_name']}</td>";
+                  echo "<td>{$row['department']}</td>";
                 ?>
                 <td>3</td>
                 <td>0</td>

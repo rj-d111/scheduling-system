@@ -1,7 +1,4 @@
-<?php 
-include "navbar.php";
-?>
-
+<?php include "navbar.php" ?>
 
 <!-- Nav tabs -->
 <div class="container-md mt-5">
@@ -41,14 +38,8 @@ include "navbar.php";
 
 </div>
 
-<!-- Welcome Message -->
-<div class="container my-3">
-    <h6>Welcome, <strong>ARAGOZA, LEIHNARD (2021-2-55555)</strong></h6>
-</div>
-
-
 <div class="container-md">
-    <div class="card p-3">
+    <div class="card p-3 mt-5">
         <div class="row justify-content-between">
             <!-- 1st Col -->
             <div class="col-sm">

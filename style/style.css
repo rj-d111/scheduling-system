@@ -88,6 +88,21 @@
     color: var(--maroon);
 }
 
+
+.offcanvas .nav-link.active{
+    font-weight: bold;
+    color: white;
+}
+
+.offcanvas .nav-link{
+    color: white;
+}
+
+.offcanvas .nav-link:hover{
+    color: rgba(255, 255, 255, 0.5);
+}
+
+
 /* Positioning */
 
 .top-15{

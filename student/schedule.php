@@ -1,4 +1,8 @@
-<?php include "navbar.php" ?>
+<?php include "navbar.php"; 
+include "../php-connect/db_conn.php";
+$sql = "SELECT * FROM tbl_schedule";
+$result = mysqli_query($conn,$sql);
+?>
 
 <!-- Nav tabs -->
 <div class="container-md mt-5">
@@ -81,19 +85,22 @@
     <!-- Table Body -->
     <tbody>
       <?php
-      // Generating 8 example table rows
-      for ($i = 1; $i <= 8; $i++) {
-        echo "<tr class=\"\">
-                <th scope=\"row\">$i</th>
-                <td>Faculty $i</td>
-                <td>Code $i</td>
-                <td>Description $i</td>
-                <td>Lec $i</td>
-                <td>Lab $i</td>
-                <td>Units $i</td>
-                <td>Schedule $i</td>
-              </tr>";
+      $i = 1;
+      while($row = mysqli_fetch_assoc($result)){
+        echo "<tr class=''>";
+        echo  "<th scope='row'>{$i}</th>";
+        echo "<td>{$row['faculty']}</td>";
+        echo "<td>{$row['course_id']}</td>";
+        echo "<td>{$row['description']}</td>";
+        echo "<td>{$row['lec']}</td>";
+        echo "<td>{$row['lab']}</td>";
+        echo "<td>{$row['units']}</td>";
+        echo "<td>{$row['schedule']}</td>";
+        echo "</tr>"; 
+        $i++;
       }
+      // Generating 8 example table rows
+ 
       ?>
     </tbody>
   </table>

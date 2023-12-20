@@ -25,12 +25,21 @@
     <div class="fixed-top bg-maroon text-iwata text-white" id="navbar-all">
         <!-- Start of Logo -->
         <div class="container-md d-flex align-items-center my-3 mx-auto text-center d-none">
+            <!-- Nav Button -->
+            
+
+            <!-- Image -->
         <a class="navbar-brand d-flex align-items-center" href="index.php">
                 <img src="../img/lpu-logo.png" alt="Bootstrap" style="max-width: 60px; margin-right: 10px;">
 
                 <h4 class="text-white ms-0 mb-0 text-start">LYCEUM OF THE PHILIPPINES UNIVERSITY <br><small>CAVITE</small></h4>          
             </a>
+            <?php if ( basename($_SERVER['SCRIPT_FILENAME']) !== 'login.php') : ?>
+            <div class="d-flex ms-auto text-start">
+              <a class="navbar-brand fs-6" href="logout.php">LOGOUT</a>
             </div>
+          <?php endif; ?>
+        </div>
     </div>
 
     <!-- End of Logo -->

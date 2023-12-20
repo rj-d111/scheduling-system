@@ -17,7 +17,7 @@
 
 <body>
     <!-- start of navbar -->
-    <nav class="navbar navbar-dark fixed-top bg-maroon text-iwata">
+    <nav class="navbar navbar-dark fixed-top bg-maroon text-iwata" style="">
         <div class="container">
 
             <a class="navbar-brand me-auto" href="login.php">
@@ -85,7 +85,7 @@
                                 <a class="nav-link" href="../school-head/login.php">School Head Log in</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="../faculty/login.php">Faculty Log in</a>
+                                <a class="nav-link" href="../student/login.php">Student Log in</a>
                             </li>
 
                         <?php } ?>
