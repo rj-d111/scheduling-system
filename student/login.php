@@ -1,4 +1,12 @@
-<?php include "navbar.php" ?>
+<?php
+session_start();
+
+if(isset($_SESSION['student_id'])){
+    header("location: home.php");
+    return;
+}
+
+include "navbar.php" ?>
 
 <div class="d-flex justify-content-center">
     <div class="card py-3 px-5 my-5 col-lg-5 col-md-6 col-sm-8 col-10">
@@ -12,6 +20,10 @@
                 <?php if(isset($_GET['incorrect']) && $_GET['incorrect']){ ?>
                 <div class="alert alert-danger" role="alert">Incorrect Email or Password</div>
                 <?php }?>
+                <?php if(isset($_SESSION['message'])){ 
+                    echo $_SESSION['message'];
+                    session_unset();
+                     } ?>
             <!-- User Name -->
             <div class="mb-3">
                 <label for="username" class="form-label">User Name</label>

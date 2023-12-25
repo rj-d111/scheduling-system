@@ -1,49 +1,86 @@
-<?php 
+<?php
+session_start();
+
+if (!isset($_SESSION['student_id'])) {
+    $_SESSION['message'] = <<<AOT
+    <div class="alert alert-warning" role="alert">Please log in first</div>
+    AOT;
+    header("location: login.php");
+    return;
+}
+
+$continuing = "";
+if ($_SESSION['year_standing'] == 1 && $_SESSION['semester'] == 'first') {
+    $continuing = "Freshman";
+} else {
+    $continuing = "Continuing";
+}
+
+$year_standing = "";
+switch($_SESSION['year_standing']){
+    case 1:
+        $year_standing = "First Year";
+        break;
+    case 2:
+        $year_standing = "Second Year";
+        break;
+    case 3:
+        $year_standing = "Third Year";
+        break;
+    case 4:
+        $year_standing = "Fourth Year";
+        break;
+    case 5:
+        $year_standing = "Fifth Year";
+        break;
+}
+
+
 include "navbar.php";
 ?>
 
 
 <!-- Nav tabs -->
 <div class="container-md mt-5">
-  <ul class="nav nav-tabs">
-    <li class="nav-item">
-      <a class="nav-link" href="#">Message</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#">Section Offering</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link active" aria-current="page"  href="registration.php">Registration</a>
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a class="nav-link" href="#">Message</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Section Offering</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="registration.php">Registration</a>
 
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#">Profile</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="schedule.php">Schedule</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#">Grades</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#">Account</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#">Calendar</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#">Password</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#">Faculty Evaluation</a>
-    </li>
-  </ul>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Profile</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="schedule.php">Schedule</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Grades</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Account</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Calendar</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Password</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Faculty Evaluation</a>
+        </li>
+    </ul>
 
 </div>
 
 <!-- Welcome Message -->
 <div class="container my-3">
-    <h6>Welcome, <strong>ARAGOZA, LEIHNARD (2021-2-55555)</strong></h6>
+    <h6>Welcome, <strong><?= strtoupper($_SESSION['last_name'] . ', ' . $_SESSION['first_name'] . ' (' . $_SESSION['student_id'] . ')') ?></strong></h6>
 </div>
 
 
@@ -57,7 +94,7 @@ include "navbar.php";
                         <strong>Student Name:</strong>
                     </div>
                     <div class="col">
-                        ARAGOZA, LEIHNARD
+                        <?= strtoupper($_SESSION['last_name'] . ', ' . $_SESSION['first_name']) ?>
                     </div>
                 </div>
                 <div class="row">
@@ -65,7 +102,7 @@ include "navbar.php";
                         <strong>Program</strong>
                     </div>
                     <div class="col">
-                        Bachelor of Science in Information Technology
+                        <?= $_SESSION['program'] ?>
                     </div>
                 </div>
                 <div class="row">
@@ -73,7 +110,7 @@ include "navbar.php";
                         <strong>Academic Year:</strong>
                     </div>
                     <div class="col">
-                        2023-2024
+                        <?= $_SESSION['academic_year'] ?>
                     </div>
                 </div>
                 <div class="row">
@@ -81,7 +118,7 @@ include "navbar.php";
                         <strong>Status:</strong>
                     </div>
                     <div class="col">
-                        Continuing (Regular) (24.00 Unit(s) Allowed)
+                        <?= $continuing . ' (' . ucwords($_SESSION['status']) . ') (' . number_format($_SESSION['allowed_units'], 2) . ' Unit(s) Allowed)' ?>
                     </div>
                 </div>
             </div>
@@ -92,7 +129,7 @@ include "navbar.php";
                         <strong>Student No:</strong>
                     </div>
                     <div class="col">
-                        2021-2-55555
+                        <?= $_SESSION['student_id'] ?>
                     </div>
                 </div>
                 <div class="row">
@@ -100,7 +137,7 @@ include "navbar.php";
                         <strong>Year Level:</strong>
                     </div>
                     <div class="col">
-                        Third Year
+                        <?= $year_standing; ?>
                     </div>
                 </div>
                 <div class="row">
@@ -108,7 +145,7 @@ include "navbar.php";
                         <strong>Semester</strong>
                     </div>
                     <div class="col">
-                        First
+                        <?= ucwords($_SESSION['semester']) ?>
                     </div>
                 </div>
                 <div class="row">

@@ -1,7 +1,5 @@
-<?php include "navbar.php" ?>
-
 <?php 
-
-header("Location: schedule.php");
+session_start();
+header("Location: registration.php");
 
 ?>

@@ -1,4 +1,7 @@
-<?php include "navbar.php"; 
+<?php 
+
+session_start();
+include "navbar.php"; 
 include "../php-connect/db_conn.php";
 $sql = "SELECT * FROM tbl_schedule";
 $result = mysqli_query($conn,$sql);
@@ -158,5 +161,9 @@ $result = mysqli_query($conn,$sql);
 
   <!-- End of Schedule Content -->
 </div>
+
+<script>
+  
+</script>
 
 <!-- <script src="../script/drag-schedule.js"></script> -->

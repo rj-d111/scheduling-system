@@ -4,7 +4,7 @@ $uname = "root";
 $password = "";
 
 // Name of the Database
-$db_name = "scheduling-system";
+$db_name = "lpu-scheduling";
 
 $conn = mysqli_connect($sname, $uname, $password, $db_name);
 
