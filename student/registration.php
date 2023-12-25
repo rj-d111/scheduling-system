@@ -1,13 +1,7 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['student_id'])) {
-    $_SESSION['message'] = <<<AOT
-    <div class="alert alert-warning" role="alert">Please log in first</div>
-    AOT;
-    header("location: login.php");
-    return;
-}
+require_once "access_control.php";
 
 $continuing = "";
 if ($_SESSION['year_standing'] == 1 && $_SESSION['semester'] == 'first') {
@@ -17,7 +11,7 @@ if ($_SESSION['year_standing'] == 1 && $_SESSION['semester'] == 'first') {
 }
 
 $year_standing = "";
-switch($_SESSION['year_standing']){
+switch ($_SESSION['year_standing']) {
     case 1:
         $year_standing = "First Year";
         break;
@@ -153,7 +147,11 @@ include "navbar.php";
                         <strong>Section</strong>
                     </div>
                     <div class="col">
-                        IT302
+                        <select class="form-select" id="section">
+                          <option value="" selected disabled>Please select section</option>
+                          <option value="IT 301">IT 301</option>
+                          <option value="IT 302">IT 302</option>
+                        </select>
                     </div>
                 </div>
             </div>

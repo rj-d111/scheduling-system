@@ -1,10 +1,19 @@
 <?php 
 
 session_start();
+require_once "access_control.php";
 include "navbar.php"; 
 include "../php-connect/db_conn.php";
-$sql = "SELECT * FROM tbl_schedule";
+$sql = "SELECT f.faculty_name, ss.subject_code, subj.subject_name, subj.lec, subj.lab, subj.units, sch.day, sec.section_name, sch.start_time, sch.end_time, sch.room_no FROM tbl_schedule sch JOIN tbl_subject_section ss ON sch.subject_section_id = ss.subject_section_id JOIN tbl_subjects subj ON ss.subject_code = subj.subject_code JOIN tbl_section sec ON sec.section_id = ss.section_id JOIN tbl_faculty_assignments fa ON ss.subject_section_id = fa.subject_section_id JOIN tbl_faculty f ON fa.faculty_id = f.faculty_id;";
 $result = mysqli_query($conn,$sql);
+
+# Get the year enrolled
+$date_string = $_SESSION['student_id'];
+# Split the string by the delimiter "-"
+$date_parts = explode("-", $date_string);
+# Get the year from the first element
+$year_admitted = $date_parts[0];
+
 ?>
 
 <!-- Nav tabs -->
@@ -52,7 +61,7 @@ $result = mysqli_query($conn,$sql);
     <select class="form-select" id="academicYear">
       <!-- Options for Academic Year (2023 to 2003) -->
       <?php
-      for ($year = 2023; $year >= 2003; $year--) {
+      for ($year = 2023; $year >= $year_admitted; $year--) {
         echo "<option value=\"$year\">$year</option>";
       }
       ?>
@@ -88,20 +97,64 @@ $result = mysqli_query($conn,$sql);
     <!-- Table Body -->
     <tbody>
       <?php
-      $i = 1;
-      while($row = mysqli_fetch_assoc($result)){
-        echo "<tr class=''>";
-        echo  "<th scope='row'>{$i}</th>";
-        echo "<td>{$row['faculty']}</td>";
-        echo "<td>{$row['course_id']}</td>";
-        echo "<td>{$row['description']}</td>";
-        echo "<td>{$row['lec']}</td>";
-        echo "<td>{$row['lab']}</td>";
-        echo "<td>{$row['units']}</td>";
-        echo "<td>{$row['schedule']}</td>";
-        echo "</tr>"; 
-        $i++;
-      }
+  
+    $i = 1;
+    $lastSubjectCode = null;
+    $combinedSchedules = '';
+    
+    while ($row = mysqli_fetch_assoc($result)) {
+        // Assuming that the result set is ordered by subject_code
+        if ($row['subject_code'] !== $lastSubjectCode) {
+            // If a new subject code is encountered, start a new row
+            if ($lastSubjectCode !== null) {
+              $combinedSchedules = rtrim($combinedSchedules, " /");
+              echo "<td>{$combinedSchedules}</td>";
+                echo "</tr>";
+                $i++;
+            }
+            echo "<tr>";
+            echo "<th scope='row'>{$i}</th>";
+            echo "<td>{$row['faculty_name']}</td>";
+            echo "<td>{$row['subject_code']}</td>";
+            echo "<td>{$row['subject_name']}</td>";
+            echo "<td>{$row['lec']}</td>";
+            echo "<td>{$row['lab']}</td>";
+            echo "<td>{$row['units']}</td>";
+            $combinedSchedules = '';
+            $lastSubjectCode = $row['subject_code'];
+        }
+    
+        // Concatenate the schedule information
+
+        $combinedSchedules .= "{$row['section_name']} {$row['day']} " . Convert12HourFormat($row['start_time']) . "-" . Convert12HourFormat($row['end_time']) . " {$row['room_no']}  / ";
+
+    }
+    
+    // Output the last row
+    if ($lastSubjectCode !== null) {
+        $combinedSchedules = rtrim($combinedSchedules, " /");
+        echo "<td>{$combinedSchedules}</td>";
+        echo "</tr>";
+    }
+    
+      //Convert to 12 hour format
+    function Convert12HourFormat($time_from_mysql){
+      $datetime = new DateTime($time_from_mysql);
+      return $datetime->format('g:i a');
+    }
+
+        // echo "<tr class=''>";
+        // echo  "<th scope='row'>{$i}</th>";
+        // echo "<td>{$row['faculty_name']}</td>";
+        // echo "<td>{$row['subject_code']}</td>";
+        // echo "<td>{$row['subject_name']}</td>";
+        // echo "<td>{$row['lec']}</td>";
+        // echo "<td>{$row['lab']}</td>";
+        // echo "<td>{$row['units']}</td>";
+        // echo "<td>{$row['start_time']}</td>";
+        // echo "</tr>"; 
+        // $i++;
+    //  }
       // Generating 8 example table rows
  
       ?>
