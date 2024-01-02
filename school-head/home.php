@@ -17,7 +17,7 @@ if (isset($_SESSION['email'])) {
           <!-- Start of tab 1 -->
           <?php
           //SQL query to join tbl_application and tbl_customer
-          $sql = "SELECT * FROM tbl_course GROUP BY department, course_id";
+          $sql = "SELECT * FROM tbl_subjects";
           // Execute the query
           $result = mysqli_query($conn, $sql);
           ?>
@@ -46,7 +46,7 @@ if (isset($_SESSION['email'])) {
                 while ($row = mysqli_fetch_assoc($result)) {
                   echo "<tr>";
                   echo '<th scope="row">' . $i . '</td>';
-                  echo "<td>{$row['course_id']}</td>";
+                  echo "<td>{$row['subject_code']}</td>";
                   echo "<td>{$row['subject_name']}</td>";
                   echo "<td>{$row['department']}</td>";
                 ?>
