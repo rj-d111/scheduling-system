@@ -13,6 +13,9 @@ $sql = "SELECT * FROM tbl_faculty WHERE email='$email'";
 $result = mysqli_query($conn, $sql);
 
 
+if(!$result){
+    header("Location: login.php?incorrect=true");
+}
 
 // echo mysqli_fetch_assoc($result)['email'];
 
@@ -21,6 +24,8 @@ while($row = mysqli_fetch_assoc($result)){
         echo "Verified";
         $_SESSION['email'] = $row['email'];
         $_SESSION['department'] = $row['department'];
+        $_SESSION['id'] = $row['faculty_id'];
+        $_SESSION['faculty_name'] = $row['faculty_name'];
         header("Location: home.php");
     }else{
         header("Location: login.php?incorrect=true");
