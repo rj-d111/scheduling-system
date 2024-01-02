@@ -47,34 +47,7 @@
                                 <a class="nav-link active" aria-current="page" href="#">Messsage</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Section Offering</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="registration.php">Registration</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Profile</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Section Offering</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="schedule.php">Schedule</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Grades</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Account</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Calendar</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Password</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Faculty Evaluation</a>
+                                <a class="nav-link active" aria-current="page" href="home.php">Courses List</a>
                             </li>
                             <hr>
                             <li class="nav-item">
